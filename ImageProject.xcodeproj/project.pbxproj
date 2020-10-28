@@ -8,15 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		5809FA0D252FFC5F00286FDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5809FA0C252FFC5F00286FDC /* AppDelegate.swift */; };
-		5809FA11252FFC5F00286FDC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5809FA10252FFC5F00286FDC /* ViewController.swift */; };
+		5809FA11252FFC5F00286FDC /* AppMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5809FA10252FFC5F00286FDC /* AppMainView.swift */; };
 		5809FA16252FFC6200286FDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5809FA15252FFC6200286FDC /* Assets.xcassets */; };
 		5809FA19252FFC6200286FDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5809FA17252FFC6200286FDC /* LaunchScreen.storyboard */; };
 		5809FA24252FFC6200286FDC /* ImageProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5809FA23252FFC6200286FDC /* ImageProjectTests.swift */; };
 		5809FA2F252FFC6200286FDC /* ImageProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5809FA2E252FFC6200286FDC /* ImageProjectUITests.swift */; };
-		584F17F425361A20002A0562 /* FF_JsonCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584F17F325361A20002A0562 /* FF_JsonCodable.swift */; };
+		584AD8DE25466A1F00163DD9 /* FF_MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584AD8DD25466A1F00163DD9 /* FF_MainView.swift */; };
+		584F17F425361A20002A0562 /* FF_NetworkJSONUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584F17F325361A20002A0562 /* FF_NetworkJSONUtil.swift */; };
 		584F18132536D3FB002A0562 /* FF_CatImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584F18122536D3FA002A0562 /* FF_CatImage.swift */; };
-		584F181B2537141F002A0562 /* FF_Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584F181A2537141F002A0562 /* FF_Like.swift */; };
-		5892094B253E58F7006B4053 /* FF_CatNewestImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5892094A253E58F7006B4053 /* FF_CatNewestImage.swift */; };
+		584F181B2537141F002A0562 /* FF_Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584F181A2537141F002A0562 /* FF_Preview.swift */; };
+		58920A022543AF03006B4053 /* FF_CVCellNewest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58920A012543AF03006B4053 /* FF_CVCellNewest.swift */; };
+		58920A0B25441691006B4053 /* FF_CVCellLast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58920A0A25441691006B4053 /* FF_CVCellLast.swift */; };
 		58A9DEB1253060490099E2FC /* FF_UILayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A9DEB0253060490099E2FC /* FF_UILayout.swift */; };
 		BD664EA48DAE2CB4DC275208 /* Pods_ImageProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5276845B701269D59C5FB4B9 /* Pods_ImageProject.framework */; };
 /* End PBXBuildFile section */
@@ -43,7 +45,7 @@
 		5276845B701269D59C5FB4B9 /* Pods_ImageProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5809FA09252FFC5E00286FDC /* ImageProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5809FA0C252FFC5F00286FDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5809FA10252FFC5F00286FDC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5809FA10252FFC5F00286FDC /* AppMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainView.swift; sourceTree = "<group>"; };
 		5809FA15252FFC6200286FDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5809FA18252FFC6200286FDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5809FA1A252FFC6200286FDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,12 +55,14 @@
 		5809FA2A252FFC6200286FDC /* ImageProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5809FA2E252FFC6200286FDC /* ImageProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProjectUITests.swift; sourceTree = "<group>"; };
 		5809FA30252FFC6200286FDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		584F17F325361A20002A0562 /* FF_JsonCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FF_JsonCodable.swift; sourceTree = "<group>"; };
+		584AD8DD25466A1F00163DD9 /* FF_MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FF_MainView.swift; sourceTree = "<group>"; };
+		584F17F325361A20002A0562 /* FF_NetworkJSONUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FF_NetworkJSONUtil.swift; sourceTree = "<group>"; };
 		584F18122536D3FA002A0562 /* FF_CatImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FF_CatImage.swift; sourceTree = "<group>"; };
-		584F181A2537141F002A0562 /* FF_Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FF_Like.swift; sourceTree = "<group>"; };
+		584F181A2537141F002A0562 /* FF_Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FF_Preview.swift; sourceTree = "<group>"; };
 		584F1882253D1DED002A0562 /* SwiftOC-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftOC-Header.h"; sourceTree = "<group>"; };
 		58920946253E0EB5006B4053 /* textFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = textFont.ttf; sourceTree = "<group>"; };
-		5892094A253E58F7006B4053 /* FF_CatNewestImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FF_CatNewestImage.swift; sourceTree = "<group>"; };
+		58920A012543AF03006B4053 /* FF_CVCellNewest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FF_CVCellNewest.swift; sourceTree = "<group>"; };
+		58920A0A25441691006B4053 /* FF_CVCellLast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FF_CVCellLast.swift; sourceTree = "<group>"; };
 		58A9DEB0253060490099E2FC /* FF_UILayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FF_UILayout.swift; sourceTree = "<group>"; };
 		B3F9CF54B42557D8102CCC22 /* Pods-ImageProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageProject.debug.xcconfig"; path = "Target Support Files/Pods-ImageProject/Pods-ImageProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,18 +127,18 @@
 		5809FA0B252FFC5E00286FDC /* ImageProject */ = {
 			isa = PBXGroup;
 			children = (
-				58920946253E0EB5006B4053 /* textFont.ttf */,
+				58920A612544363D006B4053 /* VC */,
+				58920A602544361E006B4053 /* JSONUtil */,
+				58920A382544357E006B4053 /* RES */,
+				58920A372544351B006B4053 /* LayoutUtil */,
+				58920A1B25443454006B4053 /* CC */,
+				58920A09254415F1006B4053 /* VCCell */,
 				5809FA0C252FFC5F00286FDC /* AppDelegate.swift */,
-				5809FA10252FFC5F00286FDC /* ViewController.swift */,
+				5809FA10252FFC5F00286FDC /* AppMainView.swift */,
 				5809FA15252FFC6200286FDC /* Assets.xcassets */,
 				5809FA17252FFC6200286FDC /* LaunchScreen.storyboard */,
 				5809FA1A252FFC6200286FDC /* Info.plist */,
-				58A9DEB0253060490099E2FC /* FF_UILayout.swift */,
-				584F17F325361A20002A0562 /* FF_JsonCodable.swift */,
-				584F18122536D3FA002A0562 /* FF_CatImage.swift */,
-				584F181A2537141F002A0562 /* FF_Like.swift */,
 				584F1882253D1DED002A0562 /* SwiftOC-Header.h */,
-				5892094A253E58F7006B4053 /* FF_CatNewestImage.swift */,
 			);
 			path = ImageProject;
 			sourceTree = "<group>";
@@ -155,6 +159,56 @@
 				5809FA30252FFC6200286FDC /* Info.plist */,
 			);
 			path = ImageProjectUITests;
+			sourceTree = "<group>";
+		};
+		58920A09254415F1006B4053 /* VCCell */ = {
+			isa = PBXGroup;
+			children = (
+				58920A012543AF03006B4053 /* FF_CVCellNewest.swift */,
+				58920A0A25441691006B4053 /* FF_CVCellLast.swift */,
+			);
+			path = VCCell;
+			sourceTree = "<group>";
+		};
+		58920A1B25443454006B4053 /* CC */ = {
+			isa = PBXGroup;
+			children = (
+				584AD8DD25466A1F00163DD9 /* FF_MainView.swift */,
+			);
+			path = CC;
+			sourceTree = "<group>";
+		};
+		58920A372544351B006B4053 /* LayoutUtil */ = {
+			isa = PBXGroup;
+			children = (
+				58A9DEB0253060490099E2FC /* FF_UILayout.swift */,
+			);
+			path = LayoutUtil;
+			sourceTree = "<group>";
+		};
+		58920A382544357E006B4053 /* RES */ = {
+			isa = PBXGroup;
+			children = (
+				58920946253E0EB5006B4053 /* textFont.ttf */,
+			);
+			path = RES;
+			sourceTree = "<group>";
+		};
+		58920A602544361E006B4053 /* JSONUtil */ = {
+			isa = PBXGroup;
+			children = (
+				584F17F325361A20002A0562 /* FF_NetworkJSONUtil.swift */,
+			);
+			path = JSONUtil;
+			sourceTree = "<group>";
+		};
+		58920A612544363D006B4053 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				584F181A2537141F002A0562 /* FF_Preview.swift */,
+				584F18122536D3FA002A0562 /* FF_CatImage.swift */,
+			);
+			name = VC;
 			sourceTree = "<group>";
 		};
 		ECC60C93EDF23D87E65FDCA7 /* Frameworks */ = {
@@ -338,12 +392,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				584F181B2537141F002A0562 /* FF_Like.swift in Sources */,
+				584F181B2537141F002A0562 /* FF_Preview.swift in Sources */,
 				584F18132536D3FB002A0562 /* FF_CatImage.swift in Sources */,
-				5809FA11252FFC5F00286FDC /* ViewController.swift in Sources */,
+				584AD8DE25466A1F00163DD9 /* FF_MainView.swift in Sources */,
+				58920A022543AF03006B4053 /* FF_CVCellNewest.swift in Sources */,
+				5809FA11252FFC5F00286FDC /* AppMainView.swift in Sources */,
 				58A9DEB1253060490099E2FC /* FF_UILayout.swift in Sources */,
-				5892094B253E58F7006B4053 /* FF_CatNewestImage.swift in Sources */,
-				584F17F425361A20002A0562 /* FF_JsonCodable.swift in Sources */,
+				58920A0B25441691006B4053 /* FF_CVCellLast.swift in Sources */,
+				584F17F425361A20002A0562 /* FF_NetworkJSONUtil.swift in Sources */,
 				5809FA0D252FFC5F00286FDC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

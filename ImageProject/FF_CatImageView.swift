@@ -1,15 +1,14 @@
 //
-//  FF_Like.swift
+//  FF_CatImageView.swift
 //  ImageProject
 //
-//  Created by 刘胜 on 2020/10/14.
+//  Created by 刘胜 on 2020/10/24.
 //
 
 import UIKit
 import MJRefresh
 
-@available(iOS 14.0, *)
-class FF_Like: UIViewController, UICollectionViewDataSource {
+class FF_CatImageView: UIViewController, UICollectionViewDataSource {
     var vv_header: MJRefreshNormalHeader!
     var vv_footer: MJRefreshAutoNormalFooter!
 
@@ -24,7 +23,7 @@ class FF_Like: UIViewController, UICollectionViewDataSource {
     }
     func ff_setNavi() {
         self.navigationController?.navigationBar.isHidden = false
-        let barButton = UIBarButtonItem.init(title: "＜", style: .done, target: self, action: #selector(ff_back))
+        let barButton = UIBarButtonItem.init(image: UIImage(named: "icon-fanhui"), style: .done, target: self, action: #selector(ff_back))
         self.navigationItem.leftBarButtonItem = barButton
         self.navigationController?.navigationBar.tintColor = .black
         self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.init(name: "PingFang SC", size: 18) as Any], for: .normal)
@@ -38,19 +37,12 @@ class FF_Like: UIViewController, UICollectionViewDataSource {
     }
     
     func ff_setAttribute() {
-        title = "我喜欢的"
+        title = "图集"
         self.view.backgroundColor = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 1)
         vv_header = MJRefreshNormalHeader()
         vv_footer = MJRefreshAutoNormalFooter()
     }
     
-    func ff_decodeImageKey() {
-        let vv_imageDocumentsPath = NSHomeDirectory()+"/Documents" + "/image.text"
-        let url = URL(fileURLWithPath: vv_imageDocumentsPath)
-        let JSONdata = try! Data(contentsOf: url)
-        let dic = try! JSONSerialization.jsonObject(with: JSONdata, options: .mutableContainers) as! NSArray as! Array<String>
-        vv_imageKey = dic
-    }
     
     func ff_addPrevire() {
         let layout = UICollectionViewFlowLayout()
@@ -97,7 +89,7 @@ class FF_Like: UIViewController, UICollectionViewDataSource {
 }
 
 
-extension FF_Like: UICollectionViewDelegate {
+extension FF_CatImageView: UICollectionViewDelegate {
     // 返回分区个数
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -105,7 +97,6 @@ extension FF_Like: UICollectionViewDelegate {
     
     // 返回每个分区的item个数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        ff_decodeImageKey()
         return vv_imageKey.count
     }
     
@@ -134,7 +125,7 @@ extension FF_Like: UICollectionViewDelegate {
     
 }
 
-extension FF_Like: UICollectionViewDelegateFlowLayout {
+extension FF_CatImageView: UICollectionViewDelegateFlowLayout {
     // 动态设置每个Item的尺寸
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let scale = ff_getHeightWidthScale(h: 106, w: 86)

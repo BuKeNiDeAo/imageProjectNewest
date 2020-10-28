@@ -13,7 +13,6 @@ import Foundation
 
 class FF_CatImage: UIViewController {
     var vv_likeBtn: UIButton!
-    var vv_iamgeKey: String!
     var vv_imageView: UIImageView!
 //    var vv_imageURL: String!
     var vv_isLike: Bool = false {
@@ -25,6 +24,7 @@ class FF_CatImage: UIViewController {
             }
         }
     }
+    var vv_iamgeKey: String!
     var vv_allColletionImagePath: [String]?
     var vv_allLikeImagePath: [String]?
     var vv_imageIndex: Int!
@@ -41,6 +41,7 @@ class FF_CatImage: UIViewController {
     
     func ff_setAttribute() {
         view.backgroundColor = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 1)
+        navigationController?.navigationBar.isHidden = true
     }
     
 // MARK: - 添加UIkongjian
@@ -63,7 +64,7 @@ class FF_CatImage: UIViewController {
     func ff_initBackBtn() {
         let snpArray = ff_widthScaleTransform(x: 14, y: 50, width: 54, height: 54)
         let heightWidthScale = ff_getHeightWidthScale(h: 54, w: 54)
-        ff_initBtn(imageNamed: "icon-fh", tag: 0, snpArray: snpArray, scale: heightWidthScale)
+        let _ = ff_initBtn(imageNamed: "icon-fh", tag: 0, snpArray: snpArray, scale: heightWidthScale)
     }
     
     func ff_addLikeBtn() {
@@ -83,13 +84,13 @@ class FF_CatImage: UIViewController {
     func ff_initDownloaBtn() {
         let snpArray = ff_widthScaleTransform(x: 38, y: 663, width: 101, height: 52)
         let heightWidthScale = ff_getHeightWidthScale(h: 52, w: 101)
-        ff_initBtn(imageNamed: "icon-xiazai", tag: 2, snpArray: snpArray, scale: heightWidthScale)
+        let _ = ff_initBtn(imageNamed: "icon-xiazai", tag: 2, snpArray: snpArray, scale: heightWidthScale)
     }
     
     func ff_initShareBtn() {
         let snpArray = ff_widthScaleTransform(x: 236, y: 663, width: 101, height: 52)
         let heightWidthScale = ff_getHeightWidthScale(h: 52, w: 101)
-        ff_initBtn(imageNamed: "icon-fengxiang", tag: 3, snpArray: snpArray, scale: heightWidthScale)
+        let _ = ff_initBtn(imageNamed: "icon-fengxiang", tag: 3, snpArray: snpArray, scale: heightWidthScale)
     }
     
     func ff_initBtn(imageNamed: String, tag: Int, snpArray: [CGFloat], scale: CGFloat) -> UIButton{
@@ -109,7 +110,7 @@ class FF_CatImage: UIViewController {
     @objc func ff_setBtnFunc(btn: UIButton) {
         switch btn.tag {
         case 0:
-            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
         case 1:
             ff_saveLikeImage()
         case 2:
@@ -126,8 +127,9 @@ class FF_CatImage: UIViewController {
     func ff_isAuthorized() {
         switch PHPhotoLibrary.authorizationStatus() {
         case .authorized:
-            UIImageWriteToSavedPhotosAlbum(vv_imageView.image!, self, nil, nil)
-            ff_popupWindo()
+            DispatchQueue.main.async { [self] in
+                UIImageWriteToSavedPhotosAlbum(vv_imageView.image!, self, #selector(saveImage), nil)
+            }
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization { (status) in
                 self.ff_isAuthorized()
@@ -138,6 +140,16 @@ class FF_CatImage: UIViewController {
             break
         }
     }
+    
+    @objc private func saveImage(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject) {
+       if error != nil{
+          debugPrint(error)
+       }else{
+        ff_popupWindo()
+       }
+    }
+    
+
 
     func ff_openSysSetting(){
         let vv_setttingURL = URL(string: UIApplication.openSettingsURLString)//获取设置界面的地址
@@ -146,18 +158,20 @@ class FF_CatImage: UIViewController {
         }
     }
     
-    func ff_popupWindo() {
-        let hud = MBProgressHUD.showAdded(to: view, animated: true)
-        hud.label.text = "图片下载完成"
-        hud.hide(animated: true, afterDelay: 0.8)
-    }
-    
-    @objc func ff_backAlerController() {
-        let alertController = UIAlertController(title: "图片下载完成", message: "", preferredStyle: .alert)
-        self.present(alertController, animated: true) {
-            self.ff_timingMake()
+    @objc func ff_popupWindo() {
+        DispatchQueue.main.async { [self] in
+            let hud = MBProgressHUD.showAdded(to: view, animated: true)
+            hud.label.text = "图片下载完成"
+            hud.hide(animated: true, afterDelay: 0.8)
         }
     }
+    
+//    @objc func ff_backAlerController() {
+//        let alertController = UIAlertController(title: "图片下载完成", message: "", preferredStyle: .alert)
+//        self.present(alertController, animated: true) {
+//            self.ff_timingMake()
+//        }
+//    }
     
     @objc func ff_timingMake(){
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
@@ -199,7 +213,7 @@ class FF_CatImage: UIViewController {
     func ff_showAnimation(_ subtype: CATransitionSubtype) {
         let vv_transition = CATransition()
         vv_transition.duration = 0.5
-        vv_transition.type = CATransitionType.moveIn // 推送类型
+        vv_transition.type = CATransitionType.moveIn 
         vv_transition.subtype = subtype
         vv_imageView.exchangeSubview(at: 1, withSubviewAt: 0)
         vv_imageView.layer.add(vv_transition, forKey: nil)
@@ -218,7 +232,6 @@ class FF_CatImage: UIViewController {
                 }
                 if vv_imageIndex-1 >= 0 {
                     vv_iamgeKey = imageDataSource[vv_imageIndex-1]
-
                     let url = URL(string: imageDataSource[vv_imageIndex-1])
                     vv_imageView.kf.setImage(with: url)
                     if dic.contains(vv_iamgeKey){
@@ -230,7 +243,6 @@ class FF_CatImage: UIViewController {
                     ff_showAnimation(.fromLeft)
                     break
                 }else{
-                    print("没有图片了")
                     ff_hintNoImage()
                     break
                 }
